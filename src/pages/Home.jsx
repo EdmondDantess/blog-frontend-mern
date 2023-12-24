@@ -4,7 +4,7 @@ import Tab from '@mui/material/Tab'
 import Grid from '@mui/material/Grid'
 
 import { CommentsBlock, Post, TagsBlock } from '../components'
-import { fetchPosts } from '../redux/slices/posts'
+import { fetchPosts, fetchTags } from '../redux/slices/posts'
 import { useDispatch, useSelector } from 'react-redux'
 
 export const Home = () => {
@@ -12,9 +12,11 @@ export const Home = () => {
   const { posts, tags } = useSelector(state => state.posts)
 
   const postsIsLoading = posts.status === 'loading'
+  const tagsIsLoading = tags.status === 'loading'
 
   React.useEffect(() => {
     dispatch(fetchPosts())
+    dispatch(fetchTags())
   }, [])
 
   return (
@@ -47,7 +49,7 @@ export const Home = () => {
               )}
         </Grid>
         <Grid xs={4} item>
-          <TagsBlock items={['react', 'typescript', 'заметки']} isLoading={false} />
+          <TagsBlock items={tags.items} isLoading={tagsIsLoading} />
           <CommentsBlock
             items={[
               {
