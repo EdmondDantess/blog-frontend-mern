@@ -1,5 +1,5 @@
-import React from 'react';
-import styles from './UserInfo.module.scss';
+import React from 'react'
+import styles from './UserInfo.module.scss'
 
 export const UserInfo = ({ avatarUrl, fullName, additionalText }) => {
   return (
@@ -10,5 +10,5 @@ export const UserInfo = ({ avatarUrl, fullName, additionalText }) => {
         <span className={styles.additional}>{additionalText}</span>
       </div>
     </div>
-  );
-};
+  )
+}
