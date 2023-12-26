@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from 'react-redux'
 export const Home = () => {
   const dispatch = useDispatch()
   const { posts, tags } = useSelector(state => state.posts)
+  const userData = useSelector(state => state.auth.data)
 
   const postsIsLoading = posts.status === 'loading'
   const tagsIsLoading = tags.status === 'loading'
@@ -44,7 +45,7 @@ export const Home = () => {
                     viewsCount={el.viewCount}
                     commentsCount={3}
                     tags={el.tags}
-                    isEditable
+                    isEditable={userData?._id === el.user._id}
                   />),
               )}
         </Grid>
